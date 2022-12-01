@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Demande;
+use App\Models\demande;
 use Illuminate\Http\Request;
 
 class DemandeController extends Controller
@@ -14,7 +14,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-        //
+        $demande= demande::all();
+        return view('demande.list',compact('demandes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class DemandeController extends Controller
      */
     public function create()
     {
-        //
+        return view('demande.new');
     }
 
     /**
@@ -35,51 +36,65 @@ class DemandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validation de la demande
+        $request->validate([
+            'nom'=>'required|unique:demandes,nom',
+            'description'=>'required'
+        ]);
+        $demande = new demande($request->all());
+        $demande->saveOrFail();
+        return redirect()->route('demande.index');
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Demande  $demande
+     * @param  \App\Models\demande  $demande
      * @return \Illuminate\Http\Response
      */
-    public function show(Demande $demande)
+    public function show(demande $demande)
     {
-        //
+        return view('demande.show',compact('demande'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Demande  $demande
+     * @param  \App\Models\demande  $demande
      * @return \Illuminate\Http\Response
      */
-    public function edit(Demande $demande)
+    public function edit(demande $demande)
     {
-        //
+        return view('demande.edit',compact('demande'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Demande  $demande
+     * @param  \App\Models\demande  $demande
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Demande $demande)
+    public function update(Request $request, demande $demande)
     {
-        //
+        $request->valide([
+            'nom'=>'required|unique:demande,nom'.$demande->id,
+            'description'=>'required'
+        ]);
+        $demande->updateOrFail($request->all());
+        return redirect()->route('demande.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Demande  $demande
+     * @param  \App\Models\demande  $demande
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Demande $demande)
+    public function destroy(demande $demande)
     {
-        //
+        $demande->deleteOrFail();
+        return redirect()->route('demande');
     }
 }
