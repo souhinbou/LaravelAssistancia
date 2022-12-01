@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('demande', DemandeController::class);
+Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
+
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
