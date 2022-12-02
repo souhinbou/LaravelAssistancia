@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Page de modification de la demande '.$demande->nom)
+@section('title', 'Page de modification de la demande '.$demande->objet)
 
 @section('content')
     <div class="container">
@@ -21,11 +21,11 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
-                                        <label for="nom" class="form-label">Objet</label>
-                                        <input type="text" value="{{ old('nom') ?? $demande->nom }}" class="form-control"
-                                            name="nom" id="nom" aria-describedby="helpNomId"
-                                            placeholder="Nom de la tache">
-                                        @error('nom')
+                                        <label for="objet" class="form-label">Objet</label>
+                                        <input type="text" value="{{ old('objet') ?? $demande->objet }}" class="form-control"
+                                            name="objet" id="objet" aria-describedby="helpNomId"
+                                            placeholder="Nom de la demande">
+                                        @error('objet')
                                             <small id="helpNomId" class="form-text text-muted">{{ $message }}</small>
                                         @enderror
                                     </div>

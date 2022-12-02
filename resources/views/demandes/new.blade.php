@@ -12,10 +12,10 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
-                                        <label for="nom" class="form-label">Objet</label>
-                                        <input type="text" class="form-control" name="nom" id="nom"
-                                            aria-describedby="helpNomId" placeholder="Nom de la tache">
-                                        @error('nom')
+                                        <label for="objet" class="form-label">Objet</label>
+                                        <input type="text" class="form-control" name="objet" id="objet"
+                                            aria-describedby="helpNomId" placeholder="Nom de la demande">
+                                        @error('objet')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -32,6 +32,8 @@
                                 <div class="col-12">
                                     <button type="reset" class="btn btn-secondary">Vider</button>
                                     <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    <button type="reset" class="btn btn-secondary">Voir</button>
+                                    <button type="submit" class="btn btn-succes">Modifier</button>
                                 </div>
                             </div>
                         </form>

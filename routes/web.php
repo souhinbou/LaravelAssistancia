@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -19,10 +21,11 @@ use App\Http\Controllers\DemandeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('demande', DemandeController::class);
-Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
+Route::resource('demande', DemandeController::class)->except('index');
 
+Route::middleware(['admin'])->group(function(){
+    Route::resource('dashboard', DashboardController::class);
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

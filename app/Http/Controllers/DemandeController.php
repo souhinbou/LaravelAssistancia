@@ -15,7 +15,7 @@ class DemandeController extends Controller
     public function index()
     {
         $demande= demande::all();
-        return view('demande.list',compact('demandes'));
+        return view('demandes.list',compact('demande'));
     }
 
     /**
@@ -25,7 +25,7 @@ class DemandeController extends Controller
      */
     public function create()
     {
-        return view('demande.new');
+        return view('demandes.new');
     }
 
     /**
@@ -55,7 +55,7 @@ class DemandeController extends Controller
      */
     public function show(demande $demande)
     {
-        return view('demande.show',compact('demande'));
+        return view('demandes.show',compact('demande'));
     }
 
     /**
@@ -66,7 +66,7 @@ class DemandeController extends Controller
      */
     public function edit(demande $demande)
     {
-        return view('demande.edit',compact('demande'));
+        return view('demandes.edit',compact('demande'));
     }
 
     /**
