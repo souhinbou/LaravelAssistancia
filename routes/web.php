@@ -23,8 +23,11 @@ Route::get('/', function () {
 });
 Route::resource('demande', DemandeController::class)->except('index');
 
-Route::middleware(['admin'])->group(function(){
-    Route::resource('dashboard', DashboardController::class);
+Route::middleware(['auth','admin'])->group(function(){
+    Route::get('private',function(){
+          return view('demandes.list');
+    });
+   Route::resource('dashboard', DashboardController::class);
 });
 Auth::routes();
 

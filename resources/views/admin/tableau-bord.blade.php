@@ -21,31 +21,29 @@
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($demande as $demandes)
+                        <tbody>
+                            @foreach ($demandes as $demande)
                             <tr class="">
                                 <td scope="row">{{$loop->index+1}}</td>
                                 <td>{{ $demande->objet }}</td>
                                 <td>{{ $demande->description }}</td>
                                 <td>
                                     @if ($demande->status)
-                                         <span class="badge bg-sucess">Fini</span>
+                                         <span class="badge bg-primary">Fini</span>
                                     @else
-                                    <span class="badge bg-sucess">En attente</span>
+                                    <span class="badge bg-danger">En attente</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Voir</a>
-                                    <a href="{{ route('demande.edit',compact('demande')) }}" class="btn btn-warning">Editer</a>
                                     <form class="d-inline" action="{{ route('demande.destroy', compact('demande')) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        <button type="submit" class="btn btn-success">Traiter la demande</button>
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
                 {{-- <a href="{{ route('demande.create') }}" class="btn btn-primary">Nouvelle demande</a> --}}

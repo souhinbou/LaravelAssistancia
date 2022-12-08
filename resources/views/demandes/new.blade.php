@@ -30,10 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="reset" class="btn btn-secondary">Vider</button>
                                     <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                    <button type="reset" class="btn btn-secondary">Voir</button>
-                                    <button type="submit" class="btn btn-succes">Modifier</button>
                                 </div>
                             </div>
                         </form>

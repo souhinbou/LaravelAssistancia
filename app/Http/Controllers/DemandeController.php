@@ -14,8 +14,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-        $demande= demande::all();
-        return view('demandes.list',compact('demande'));
+        $demandes= demande::all();
+        return view('demandes.list',compact('demandes'));
     }
 
     /**
@@ -41,8 +41,8 @@ class DemandeController extends Controller
             'nom'=>'required|unique:demandes,nom',
             'description'=>'required'
         ]);
-        $demande = new demande($request->all());
-        $demande->saveOrFail();
+        $demandes = new demande($request->all());
+        $demandes->saveOrFail();
         return redirect()->route('demande.index');
     }
 

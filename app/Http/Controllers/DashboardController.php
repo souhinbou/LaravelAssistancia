@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Demande;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.tableau-bord');
+        $demandes=Demande::all();
+        return view('admin.tableau-bord',compact('demandes'));
     }
 
     /**

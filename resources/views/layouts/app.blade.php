@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Assistancia') }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- CSRF Token -->
@@ -50,7 +50,7 @@
     <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a></h1>
+            <h1 class="logo me-auto"><a href="{{ url('/') }}">{{ config('app.name', 'Assistancia') }}</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -120,11 +120,22 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
+                        {{-- <h4>Join Our Newsletter</h4>
                         <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                         <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
+                        </form> --}}
+                        <div class="card-header">{{_('')}}</div>
+        
+                        <div class="card-body">
+                            @if(session('status'))
+                               <div class=" alert alert-success">
+                                  {{session('status')}}
+                               </div>
+                            @endif
+                            {{_('Bienvenue Dans Assistancia')}} <br> <br>
+                          <h4><a href="{{route('demande.create')}}">Formulez une demande</a></h4>  
+                        </div>
                     </div>
                 </div>
             </div>
