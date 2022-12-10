@@ -6,7 +6,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Formulaire d'ajout d'une demande</h4>
                         <form action="{{ route('demande.store') }}" method="POST">
                             @csrf
                             <div class="row">

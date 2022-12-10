@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(Auth()->user()->role=='admin')
+        {
+            return  view('admin.tableau-bord');
+
+        }
+        else if (Auth()->user()->role=='superadmin'){
+
+        }
+        else
+            return view('home');
     }
 }

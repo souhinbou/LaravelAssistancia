@@ -120,13 +120,13 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        {{-- <h4>Join Our Newsletter</h4>
+                        <h4>Join Our Newsletter</h4>
                         <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                         <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form> --}}
-                        <div class="card-header">{{_('')}}</div>
-        
+                        </form>
+                        {{-- <div class="card-header">{{_('')}}</div>
+
                         <div class="card-body">
                             @if(session('status'))
                                <div class=" alert alert-success">
@@ -134,8 +134,8 @@
                                </div>
                             @endif
                             {{_('Bienvenue Dans Assistancia')}} <br> <br>
-                          <h4><a href="{{route('demande.create')}}">Formulez une demande</a></h4>  
-                        </div>
+                          <h4><a href="{{route('demande.create')}}">Formulez une demande</a></h4>
+                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\demande;
+//use App\Models\demande;
+use App\Models\Demande;
 use Illuminate\Http\Request;
 
 class DemandeController extends Controller
@@ -41,8 +42,9 @@ class DemandeController extends Controller
             'nom'=>'required|unique:demandes,nom',
             'description'=>'required'
         ]);
-        $demandes = new demande($request->all());
-        $demandes->saveOrFail();
+        $demandes=Demande::create($request->all());
+        //$demandes->user_id=1;
+        //$demandes->saveOrFail();
         return redirect()->route('demande.index');
     }
 

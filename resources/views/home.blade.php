@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            {{-- <div class="card">
+        <div class="col-lg-6">
+            <div class="card">
                 <div class="card-header">{{_('')}}</div>
 
                 <div class="card-body">
@@ -14,9 +14,9 @@
                        </div>
                     @endif
                     {{_('Bienvenue Dans Assistancia')}} <br> <br>
-                    <a href="#">Formulez une demande</a>
+                    <a href="{{route('demande.create')}}">Formulez une demande</a>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 </div>

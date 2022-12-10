@@ -22,7 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($demande as $demandes)
+                            @foreach ($demandes as $demande)
                             <tr class="">
                                 <td scope="row">{{$loop->index+1}}</td>
                                 <td>{{ $demande->objet }}</td>
