@@ -27,7 +27,7 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('private',function(){
           return view('demandes.list');
     });
-    //Route::resource('dashboard', DashboardController::class);
+    Route::resource('dashboard', DashboardController::class);
 });
 Auth::routes();
 

@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         if(Auth()->user()->role=='admin')
         {
-            return  view('admin.tableau-bord');
+            return  view('admin.list');
 
         }
         else if (Auth()->user()->role=='superadmin'){

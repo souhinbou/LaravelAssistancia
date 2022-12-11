@@ -8,7 +8,6 @@
             <h4 class="card-title">{{ $demande->objet }}</h4>
             <hr>
             <p class="card-text">{{ $demande->description }}</p>
-            <p class="card-text">Status: {{ $demande->status }}</p>
         </div>
     </div>
 @endsection

@@ -93,7 +93,7 @@
 
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
-            <div class="container">
+            {{-- <div class="container">
 
                 <ol>
                     <li><a href="{{ route('home') }}">Accueil</a></li>
@@ -101,7 +101,7 @@
                 </ol>
                 <h2>@yield('title')</h2>
 
-            </div>
+            </div> --}}
         </section>
         <!-- End Breadcrumbs -->
 

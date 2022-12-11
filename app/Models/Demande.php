@@ -13,7 +13,7 @@ class Demande extends Model
     protected $fillable=[
         'objet',
         'description',
-        'user_id'
+
     ];
 
 

@@ -8,7 +8,6 @@
             <div class="card">
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p>Dashboard des demandes</p>
                 </blockquote>
                 <div class="table-responsive-sm">
                     <table class="table table-bordered table-striped table-hover">
@@ -29,24 +28,24 @@
                                 <td>{{ $demande->description }}</td>
                                 <td>
                                     @if ($demande->status)
-                                         <span class="badge bg-primary">Fini</span>
+                                       <span class="badge bg-primary">En attende</span>
+                                    @elseif ($demande->status)
+                                       <span class="badge bg-primary">En cours de traitement</span>
+                                    @elseif ($demande->status)
+                                       <span class="badge bg-primary">Rejetée</span>
                                     @else
-                                    <span class="badge bg-danger">En attente</span>
+                                       <span class="badge bg-danger">Traitée</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <form class="d-inline" action="{{ route('demande.destroy', compact('demande')) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-success">Traiter la demande</button>
-                                    </form>
+                                    <a href="{{ route('demande.edit',compact('demande')) }}" class="btn btn-warning">Traiter la demande</a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                {{-- <a href="{{ route('demande.create') }}" class="btn btn-primary">Nouvelle demande</a> --}}
+
               </div>
             </div>
         </div>

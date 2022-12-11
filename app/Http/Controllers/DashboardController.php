@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index()
     {
         $demandes=Demande::all();
-        return view('admin.tableau-bord',compact('demandes'));
+        return view('admin.list',compact('demandes'));
     }
 
     /**

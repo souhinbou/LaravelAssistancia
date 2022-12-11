@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">{{_('')}}</div>
+                <div class="card-body">{{_('')}}</div>
 
                 <div class="card-body">
                     @if(session('status'))
@@ -13,10 +13,13 @@
                           {{session('status')}}
                        </div>
                     @endif
-                    {{_('Bienvenue Dans Assistancia')}} <br> <br>
-                    <a href="{{route('demande.create')}}">Formulez une demande</a>
+                        <div class="card-body">
+                            {{_('Bienvenue Dans Assistancia')}} <br> <br>
+                            <a href="{{route('demande.create')}}">Formulez une demande</a>
+                        </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

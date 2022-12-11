@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Liste des taches')
-
+@section('title', 'Liste des Demandes')
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -22,33 +21,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($demandes as $demande)
+
+                            @foreach ($demandes=App\models\Demande::all() as $demande)
                             <tr class="">
                                 <td scope="row">{{$loop->index+1}}</td>
                                 <td>{{ $demande->objet }}</td>
                                 <td>{{ $demande->description }}</td>
                                 <td>
                                     @if ($demande->status)
-                                         <span class="badge bg-sucess">Fini</span>
+                                        <span class="badge bg-danger">En cours de traitement</span>
                                     @else
-                                    <span class="badge bg-sucess">En attente</span>
+                                        <span class="badge bg-danger">En cours de traitement</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Voir</a>
-                                    <a href="{{ route('demande.edit',compact('demande')) }}" class="btn btn-warning">Editer</a>
-                                    <form class="d-inline" action="{{ route('demande.destroy', compact('demande')) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                    </form>
+                                    <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Traiter demande</a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <a href="{{ route('demande.create') }}" class="btn btn-primary">Nouvelle demande</a>
               </div>
             </div>
         </div>
