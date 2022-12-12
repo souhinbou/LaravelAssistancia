@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\HomeController;
-
+use App\Mail\SendNewDemandeMail;
+use App\Models\Demande;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +23,19 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('demande', DemandeController::class)->except('index');
+Route::resource('demande', DemandeController::class);
 
 Route::middleware(['auth','admin'])->group(function(){
     Route::get('private',function(){
-          return view('demandes.list');
+          return view('admin.list');
     });
     Route::resource('dashboard', DashboardController::class);
+});
+Route::get('mail',function(){
+    $demande=Demande::first();
+
+    $admin = User::first();
+    return new SendNewDemandeMail($demande, $admin);
 });
 Auth::routes();
 

@@ -7,6 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('demande.store') }}" method="POST">
+                            {{method_field('post')}}
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-md-6">
@@ -32,6 +33,8 @@
                                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                                 </div>
                             </div>
+                            <input type="text" style='display: none' name="user_id" value="{{Auth::user()->id}}"/>
+
                         </form>
                     </div>
                 </div>

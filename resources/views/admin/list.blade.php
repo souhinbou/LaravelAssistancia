@@ -28,10 +28,10 @@
                                 <td>{{ $demande->objet }}</td>
                                 <td>{{ $demande->description }}</td>
                                 <td>
-                                    @if ($demande->status)
-                                        <span class="badge bg-danger">En cours de traitement</span>
+                                    @if ($demande->etat)
+                                        <span class="badge bg-danger">{{$demande->etat}}</span>
                                     @else
-                                        <span class="badge bg-danger">En cours de traitement</span>
+                                        <span class="badge bg-danger">{{$demande->etat}}</span>
                                     @endif
                                 </td>
                                 <td>

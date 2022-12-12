@@ -16,9 +16,13 @@ class Demande extends Model
 
     ];
 
-
-    public function user():BelongsTo
+    /**
+     * Get the user that owns the Demande
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(related:User::class);
+        return $this->belongsTo(User::class);
     }
 }
