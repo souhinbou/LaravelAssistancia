@@ -47,7 +47,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        //return view('admin.show');
     }
 
     /**
@@ -82,5 +82,9 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function listdemande(){
+        $demandes= Demande::all();
+        return view('admin.list',compact('demandes'));
     }
 }

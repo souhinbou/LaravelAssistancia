@@ -7,7 +7,7 @@ Détails de la demande :
 -Objet :{{$demande->objet}}
 -Description: {{$demande->description}}
 
-@component('mail::button', ['url' => route('dashbord.index',compact('demande')) , 'color' => 'green'])
+@component('mail::button', ['url' => route('list.demande',compact('demande')) , 'color' => 'green'])
     voir la demande
 @endcomponent
 

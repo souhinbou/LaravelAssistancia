@@ -26,10 +26,13 @@ Route::get('/', function () {
 Route::resource('demande', DemandeController::class);
 
 Route::middleware(['auth','admin'])->group(function(){
-    Route::get('private',function(){
+    Route::get('/private',function(){
           return view('admin.list');
     });
-    Route::resource('dashboard', DashboardController::class);
+
+    Route::get('list',[DashboardController::class,'listdemande'])->name('list.demande');
+    Route::get('AttCour',[DemandeController::class,'attente_encour'])->name('attente.cour');
+    Route::resource('dashboard',DashboardController::class);
 });
 Route::get('mail',function(){
     $demande=Demande::first();

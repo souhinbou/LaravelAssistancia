@@ -19,7 +19,8 @@ class DemandeController extends Controller
     public function index()
     {
          $demandes= Demande::all();
-         return view('demandes.new',compact('demandes'));
+         return view('home',compact('demandes'));
+
     }
 
     /**
@@ -73,7 +74,7 @@ class DemandeController extends Controller
      */
     public function show(demande $demande)
     {
-        return view('demandes.show',compact('demande'));
+        return view('admin.show',compact('demande'));
     }
 
     /**
@@ -115,4 +116,15 @@ class DemandeController extends Controller
         $demande->deleteOrFail();
         return redirect()->route('demande');
     }
+
+    public function reaction_admin(Request $request){
+
+
+    }
+    public function attente_encour(Request $request){
+
+        Demande::findOrFail($request->id)->update(['etat'=>'En cours de traitement']);
+
+    }
+
 }

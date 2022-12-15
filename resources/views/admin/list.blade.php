@@ -35,7 +35,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Traiter demande</a>
+                                    <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Traiter la demande</a>
                                 </td>
                             </tr>
                             @endforeach

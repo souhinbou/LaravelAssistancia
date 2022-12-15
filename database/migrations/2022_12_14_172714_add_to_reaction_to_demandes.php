@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('demandes', function (Blueprint $table) {
-            $table->enum('etat',['En attente','En cours de traitement','Rejetée','Traitée'])->default('En attente');
+            $table->string('reactio')->nullable();
         });
     }
 
