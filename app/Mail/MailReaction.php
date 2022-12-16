@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Demande;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,8 +14,9 @@ use Illuminate\Queue\SerializesModels;
 class MailReaction extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     public Demande $demande;
+    public User $demandeur;
 
 
     /**
@@ -22,10 +24,11 @@ class MailReaction extends Mailable
      *
      * @return void
      */
-    public function __construct(Demande $demande)
+    public function __construct(Demande $demande,User $demandeur)
     {
-        
+
         $this->demande=$demande;
+        $this->demandeur=$demandeur;
     }
 
     /**

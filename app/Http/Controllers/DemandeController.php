@@ -11,6 +11,7 @@ use App\Models\Demande;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\New_;
 
 class DemandeController extends Controller
 {
@@ -88,7 +89,10 @@ class DemandeController extends Controller
      */
     public function edit(demande $demande)
     {
-        return view('demandes.edit',compact('demande'));
+        return view('mail.traiter',compact('demande'));
+    }
+    public function rejet(){
+        return view('mail.rejeter',compact('demande'));
     }
 
     /**
@@ -120,30 +124,28 @@ class DemandeController extends Controller
         return redirect()->route('demande');
     }
 
-    public function encour_traite(Request $request,Demande $demande,$resultat){
-       $demande->status=$resultat;
-       $demande->update($request->all());
-       Mail::to($demande->user)->send(new MailReaction($demande));
-       return redirect()->route('admin.list',compact('demande'));
+    public function rejeter(Request $request,Demande $demande){
+
+        $demande->update(['status'=>'Rejetee', 'reponse'=>$request->reponse]);
+        $user_demande=$demande->user;
+        Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
+        return view('admin.list',compact('demande'));
 
 
     }
+    public function traiter(Request $request,Demande $demande){
+            $demande->update(['status'=>'Traitee', 'reponse'=>$request->reponse]);
+            $user_demande=$demande->user;
+            Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
+            return view('admin.list',compact('demande'));
+    }
+
     public function attente_encour(Request $request,Demande $demande){
 
         if(empty($demande->admin_id)){
             Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
         }
         return view('admin.list',compact('demande'));
-
-    //    if(empty($demande->admin_id)){
-    //     $demande->admin_id= Auth::user()->id;
-    //     $demande->etat='En_cours';
-    //     $demande->update($request->all());
-
-    //   //  return json_encode(['etat'=>$demande->etat, 'admin_id'=>$demande->admin_id]);
-    //     dd($demande);
-    //     return view('admin.list',compact('demande'));
-    //     }
 
     }
 

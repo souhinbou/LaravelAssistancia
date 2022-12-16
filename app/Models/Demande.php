@@ -10,14 +10,15 @@ class Demande extends Model
 {
     use HasFactory;
     protected $guarded=['id'];
-    protected $fillable=[
-        'objet',
-        'description',
-        'status',
-        'auteur_id',
-        'admin_id'
+    // protected $fillable=[
+    //     'objet',
+    //     'description',
+    //     'status',
+    //     'auteur_id',
+    //     'admin_id',
+    //     'reponse'
 
-    ];
+    // ];
 
     /**
      * Get the user that owns the Demande
@@ -26,6 +27,7 @@ class Demande extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'auteur_id');
     }
+
 }

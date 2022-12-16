@@ -18,12 +18,12 @@
                 <input type="text" style='display: none' name="admin_id" value="{{Auth::user()->id}}"/>
                 <button type="submit" class="btn btn-warning">Mettre en cours</button>
             </form>
-            <form class="d-inline" action="{{route('encour.traite')}}" method="get">
+            <form class="d-inline" action="{{route('demande.edit',$demande->id)}}" method="get">
                 @csrf
                 @method('get')
                 <button type="submit" class="btn btn-success">Traiter</button>
             </form>
-            <form class="d-inline" action="{{route('encour.traite')}}" method="get">
+            <form class="d-inline" action="{{route('rejeet',$demande->id)}}" method="get">
                 @csrf
                 @method('get')
                 <button type="submit" class="btn btn-danger">Rejeter</button>

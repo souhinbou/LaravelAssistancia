@@ -1,12 +1,15 @@
 <x-mail::message>
-# Introduction
+# Notification de la demande
+Bonjour **{{$demandeur->name}}**,
 
-The body of your message.
+Détails de la demande :
+-Motif :{{$demande->reponse}}
 
-<x-mail::button :url="''">
+
+{{-- <x-mail::button :url="''">
 Button Text
-</x-mail::button>
+</x-mail::button> --}}
 
-Thanks,<br>
+Merci,<br>
 {{ config('app.name') }}
 </x-mail::message>

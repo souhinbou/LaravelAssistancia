@@ -31,8 +31,14 @@ Route::middleware(['auth','admin'])->group(function(){
     });
 
     Route::get('list',[DashboardController::class,'listdemande'])->name('list.demande');
+    //cette route permet de passer la demande attente vers En cours
     Route::get('AttCour/{id}',[DemandeController::class,'attente_encour'])->name('AttCour');
-    Route::get('traitee',[DemandeController::class,'encour_traite'])->name('encour.traite');
+    //cette route permet d'appeler la fonction rejeter pour passer la demande  en attente vers rejetee
+    Route::get('rejete/{demande}',[DemandeController::class,'rejeter'])->name('rejetee');
+    //cette route permet d'appeler la fonction traiter pour passer la demande en attente vers rejetee
+    Route::get('traite/{demande}',[DemandeController::class,'traiter'])->name('traitee');
+    // cette route permet d'apppeler la fonction rejet pour aller dans la page rejeter.blade.php
+    Route::get('rejett',[DemandeController::class,'rejet'])->name('rejeet');
     Route::resource('dashboard',DashboardController::class);
 });
 Route::get('mail',function(){

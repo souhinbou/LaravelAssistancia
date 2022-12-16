@@ -28,10 +28,14 @@
                                 <td>{{ $demande->objet }}</td>
                                 <td>{{ $demande->description }}</td>
                                 <td>
-                                    @if ($demande->status)
+                                    @if ($demande->status==='Traitee')
+                                        <span class="badge bg-success">{{$demande->status}}</span>
+                                    @elseif ($demande->status==='En_cours')
+                                        <span class="badge bg-warning">{{$demande->status}}</span>
+                                    @elseif ($demande->status==='Rejetee')
                                         <span class="badge bg-danger">{{$demande->status}}</span>
                                     @else
-                                        <span class="badge bg-danger">{{$demande->status}}</span>
+                                        <span class="badge bg-warning">{{$demande->status}}</span>
                                     @endif
                                 </td>
                                 <td>
