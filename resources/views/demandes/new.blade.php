@@ -33,7 +33,7 @@
                                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                                 </div>
                             </div>
-                            <input type="text" style='display: none' name="user_id" value="{{Auth::user()->id}}"/>
+                            <input type="text" style='display: none' name="auteur_id" value="{{Auth::user()->id}}"/>
 
                         </form>
                     </div>

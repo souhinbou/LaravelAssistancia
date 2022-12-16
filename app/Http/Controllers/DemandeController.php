@@ -48,13 +48,13 @@ class DemandeController extends Controller
         $request->validate([
             'objet'=>'required|unique:demandes,objet',
             'description'=>'required',
-            'user_id'=>'required'
+            'auteur_id'=>'required'
         ]);
         // $demandes= new Demande($request->all());
         $demande = new Demande;
         $demande->objet = $request->objet;
         $demande->description  = $request->description;
-        $demande->user_id=$request->user_id;
+        $demande->auteur_id=$request->auteur_id;
         // return json_encode(['objet'=>$demande->objet, 'description'=>$demande->description, 'user_id'=>$request->user_id]);
         if($demande->save()){
             $admins = User::where('role','=', 'admin')->get();
@@ -120,8 +120,8 @@ class DemandeController extends Controller
         return redirect()->route('demande');
     }
 
-    public function encour_traite(Request $request,Demande $demande,Demande $resultat){
-       $demande->etat=$resultat;
+    public function encour_traite(Request $request,Demande $demande,$resultat){
+       $demande->status=$resultat;
        $demande->update($request->all());
        Mail::to($demande->user)->send(new MailReaction($demande));
        return redirect()->route('admin.list',compact('demande'));
@@ -129,17 +129,22 @@ class DemandeController extends Controller
 
     }
     public function attente_encour(Request $request,Demande $demande){
-       //Demande::findOrFail($request->id=123)->updateOrFail(['etat'=>'En_cours','admin_id'=>Auth::user()->id]);
-       if(empty($demande->admin_id)){
-        $demande->admin_id= Auth::user()->id;
-        $demande->etat='En_cours';
-        $demande->update($request->all());
-    
-      //  return json_encode(['etat'=>$demande->etat, 'admin_id'=>$demande->admin_id]);
-        dd($demande);
-        return view('admin.list',compact('demande'));
+
+        if(empty($demande->admin_id)){
+            Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
         }
-       
+        return view('admin.list',compact('demande'));
+
+    //    if(empty($demande->admin_id)){
+    //     $demande->admin_id= Auth::user()->id;
+    //     $demande->etat='En_cours';
+    //     $demande->update($request->all());
+
+    //   //  return json_encode(['etat'=>$demande->etat, 'admin_id'=>$demande->admin_id]);
+    //     dd($demande);
+    //     return view('admin.list',compact('demande'));
+    //     }
+
     }
 
 }

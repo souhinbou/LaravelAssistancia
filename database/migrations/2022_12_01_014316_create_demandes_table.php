@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
             $table->string('objet');
-            $table->boolean('status')->default(false);
+            $table->enum('status',['En_attente','En_cours','Rejetee','Traitee'])->default('En_attente');
             $table->text('description');
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->foreign('admin_id')->references('id')->on('users');
+            $table->unsignedBigInteger('auteur_id')->nullable();
+            $table->foreign('auteur_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

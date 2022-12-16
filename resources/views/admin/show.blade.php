@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-12">
-            <form class="d-inline" action="{{route('attente.cour')}}" method="get">
+            <form class="d-inline" action="{{route('AttCour',$demande->id)}}" method="get">
                 @csrf
                 @method('get')
                 <input type="text" style='display: none' name="admin_id" value="{{Auth::user()->id}}"/>
