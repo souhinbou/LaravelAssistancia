@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 //use App\Models\demande;
+
+use App\Mail\MailReaction;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendNewDemandeMail;
 use App\Models\Demande;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DemandeController extends Controller
 {
@@ -117,14 +120,26 @@ class DemandeController extends Controller
         return redirect()->route('demande');
     }
 
-    public function reaction_admin(Request $request){
+    public function encour_traite(Request $request,Demande $demande,Demande $resultat){
+       $demande->etat=$resultat;
+       $demande->update($request->all());
+       Mail::to($demande->user)->send(new MailReaction($demande));
+       return redirect()->route('admin.list',compact('demande'));
 
 
     }
-    public function attente_encour(Request $request){
-
-        Demande::findOrFail($request->id)->update(['etat'=>'En cours de traitement']);
-
+    public function attente_encour(Request $request,Demande $demande){
+       //Demande::findOrFail($request->id=123)->updateOrFail(['etat'=>'En_cours','admin_id'=>Auth::user()->id]);
+       if(empty($demande->admin_id)){
+        $demande->admin_id= Auth::user()->id;
+        $demande->etat='En_cours';
+        $demande->update($request->all());
+    
+      //  return json_encode(['etat'=>$demande->etat, 'admin_id'=>$demande->admin_id]);
+        dd($demande);
+        return view('admin.list',compact('demande'));
+        }
+       
     }
 
 }

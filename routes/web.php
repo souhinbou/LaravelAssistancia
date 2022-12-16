@@ -32,6 +32,7 @@ Route::middleware(['auth','admin'])->group(function(){
 
     Route::get('list',[DashboardController::class,'listdemande'])->name('list.demande');
     Route::get('AttCour',[DemandeController::class,'attente_encour'])->name('attente.cour');
+    Route::get('traitee',[DemandeController::class,'encour_traite'])->name('encour.traite');
     Route::resource('dashboard',DashboardController::class);
 });
 Route::get('mail',function(){

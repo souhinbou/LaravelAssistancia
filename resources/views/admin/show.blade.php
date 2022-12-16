@@ -12,20 +12,20 @@
             </div>
         </div>
         <div class="col-12">
-            <a href="{{url('attente.cour')}}" class="btn btn-danger">Voir</a>
             <form class="d-inline" action="{{route('attente.cour')}}" method="get">
                 @csrf
                 @method('get')
-                <button type="submit" class="btn btn-warning">Mettre en cours de traitement</button>
+                <input type="text" style='display: none' name="admin_id" value="{{Auth::user()->id}}"/>
+                <button type="submit" class="btn btn-warning">Mettre en cours</button>
             </form>
-            <form class="d-inline" action="#" method="post">
+            <form class="d-inline" action="{{route('encour.traite')}}" method="get">
                 @csrf
-                @method('delete')
+                @method('get')
                 <button type="submit" class="btn btn-success">Traiter</button>
             </form>
-            <form class="d-inline" action="#" method="post">
+            <form class="d-inline" action="{{route('encour.traite')}}" method="get">
                 @csrf
-                @method('delete')
+                @method('get')
                 <button type="submit" class="btn btn-danger">Rejeter</button>
             </form>
         </div>
