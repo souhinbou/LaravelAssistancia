@@ -2,13 +2,9 @@
 # Notification de la demande
 Bonjour **{{$demandeur->name}}**,
 
-Détails de la demande :
--Motif :{{$demande->reponse}}
+Détails de la réponse : <br>
+-*Motif:* __{{$demande->reponse}}__
 
-
-{{-- <x-mail::button :url="''">
-Button Text
-</x-mail::button> --}}
 
 Merci,<br>
 {{ config('app.name') }}

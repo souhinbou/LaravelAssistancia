@@ -3,6 +3,7 @@
 @section('title', 'Détails de la demande: '.$demande->objet)
 
 @section('content')
+@if($demande->admin_id==Auth::user()->id)
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -30,4 +31,10 @@
             </form>
         </div>
     </div>
+
+    @else
+        <div>
+            Cette demande ne vous est pas attribuée
+        </div>
+    @endif
 @endsection

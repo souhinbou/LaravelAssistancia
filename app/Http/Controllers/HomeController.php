@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Demande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,13 +27,15 @@ class HomeController extends Controller
     {
         if(Auth()->user()->role=='admin')
         {
-            return  view('admin.list');
+            
+            $demandes=Demande::where('admin_id',Auth::user()->id)->get();
+            return  view('admin.list',compact('demandes'));
 
         }
         else if (Auth()->user()->role=='superadmin'){
 
         }
         else
-            return view('home');
+            return view('demandes.saisie');
     }
 }

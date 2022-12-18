@@ -22,7 +22,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($demandes=App\models\Demande::all() as $demande)
+                            @foreach ($demandes as $demande)
                             <tr class="">
                                 <td scope="row">{{$loop->index+1}}</td>
                                 <td>{{ $demande->objet }}</td>
@@ -35,7 +35,7 @@
                                     @elseif ($demande->status==='Rejetee')
                                         <span class="badge bg-danger">{{$demande->status}}</span>
                                     @else
-                                        <span class="badge bg-warning">{{$demande->status}}</span>
+                                        <span class="badge bg-primary">{{$demande->status}}</span>
                                     @endif
                                 </td>
                                 <td>

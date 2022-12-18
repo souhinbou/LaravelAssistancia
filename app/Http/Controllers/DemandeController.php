@@ -22,8 +22,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-         $demandes= Demande::all();
-         return view('home',compact('demandes'));
+
+        return view('demandes.saisie');
 
     }
 
@@ -91,8 +91,11 @@ class DemandeController extends Controller
     {
         return view('mail.traiter',compact('demande'));
     }
-    public function rejet(){
+    public function rejet(Demande $demande){
         return view('mail.rejeter',compact('demande'));
+    }
+    public function utilisteur(){
+        return view('demandes.edit');
     }
 
     /**
@@ -120,8 +123,7 @@ class DemandeController extends Controller
      */
     public function destroy(demande $demande)
     {
-        $demande->deleteOrFail();
-        return redirect()->route('demande');
+       //
     }
 
     public function rejeter(Request $request,Demande $demande){
@@ -129,7 +131,7 @@ class DemandeController extends Controller
         $demande->update(['status'=>'Rejetee', 'reponse'=>$request->reponse]);
         $user_demande=$demande->user;
         Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
-        return view('admin.list',compact('demande'));
+        //return view('admin.list',compact('demande'));
 
 
     }
@@ -137,15 +139,15 @@ class DemandeController extends Controller
             $demande->update(['status'=>'Traitee', 'reponse'=>$request->reponse]);
             $user_demande=$demande->user;
             Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
-            return view('admin.list',compact('demande'));
+           // return view('admin.list',compact('demande'));
     }
 
     public function attente_encour(Request $request,Demande $demande){
 
         if(empty($demande->admin_id)){
             Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
+            return view('admin.list',compact('demande'));
         }
-        return view('admin.list',compact('demande'));
 
     }
 

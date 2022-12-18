@@ -23,26 +23,30 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin', function () {
+    return view('superadmin.super');
+});
 Route::resource('demande', DemandeController::class);
+Route::get('home2', [DemandeController::class, 'utilisateur']);
 
-Route::middleware(['auth','admin'])->group(function(){
-    Route::get('/private',function(){
-          return view('admin.list');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/private', function () {
+        return view('admin.list');
     });
 
-    Route::get('list',[DashboardController::class,'listdemande'])->name('list.demande');
+    Route::get('list', [DashboardController::class, 'listdemande'])->name('list.demande');
     //cette route permet de passer la demande attente vers En cours
-    Route::get('AttCour/{id}',[DemandeController::class,'attente_encour'])->name('AttCour');
+    Route::get('AttCour/{id}', [DemandeController::class, 'attente_encour'])->name('AttCour');
     //cette route permet d'appeler la fonction rejeter pour passer la demande  en attente vers rejetee
-    Route::get('rejete/{demande}',[DemandeController::class,'rejeter'])->name('rejetee');
+    Route::get('rejete/{demande}', [DemandeController::class, 'rejeter'])->name('rejetee');
     //cette route permet d'appeler la fonction traiter pour passer la demande en attente vers rejetee
-    Route::get('traite/{demande}',[DemandeController::class,'traiter'])->name('traitee');
+    Route::get('traite/{demande}', [DemandeController::class, 'traiter'])->name('traitee');
     // cette route permet d'apppeler la fonction rejet pour aller dans la page rejeter.blade.php
-    Route::get('rejett',[DemandeController::class,'rejet'])->name('rejeet');
-    Route::resource('dashboard',DashboardController::class);
+    Route::get('rejett/{demande}', [DemandeController::class, 'rejet'])->name('rejeet');
+    Route::resource('dashboard', DashboardController::class);
 });
-Route::get('mail',function(){
-    $demande=Demande::first();
+Route::get('mail', function () {
+    $demande = Demande::first();
 
     $admin = User::first();
     return new SendNewDemandeMail($demande, $admin);

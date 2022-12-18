@@ -39,7 +39,7 @@ class MailReaction extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Mail Reaction',
+            subject: 'Mail Reaction'.$this->demande->objet,
         );
     }
 

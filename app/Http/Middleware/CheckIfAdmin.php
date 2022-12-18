@@ -17,17 +17,18 @@ class CheckIfAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-          //administrateur role =admin
+        //administrateur role =admin
         //utilisateur role=""
-       if(Auth::check()){
-          if(Auth::user()->role=='admin'){
+        //    if(Auth::check()){
+        if (Auth::user()->role == 'admin') {
             return $next($request);
-        } else{
-            return redirect('/home')->with('message',"accés refusé vous n etes pas un administrateur!");
+        } else {
+            abort(403);
+            // return redirect('/utilisateur')->with('message', "accés refusé vous n etes pas un administrateur!");
         }
-        }else {
-            return redirect('/login')->with('message',"il faut un login pour accéder aux informations du site ");
-        }
+        // }else {
+        //     return redirect('/login')->with('message',"il faut un login pour accéder aux informations du site ");
+        // }
         return $next($request);
     }
 }
