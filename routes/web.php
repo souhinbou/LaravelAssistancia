@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SuperAdminController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,11 +24,9 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin', function () {
-    return view('superadmin.super');
-});
 Route::resource('demande', DemandeController::class);
 Route::get('home2', [DemandeController::class, 'utilisateur']);
+Route::get('saisie',[DemandeController::class,'saisie'])->name('saisie.demande');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/private', function () {
@@ -45,12 +44,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('rejett/{demande}', [DemandeController::class, 'rejet'])->name('rejeet');
     Route::resource('dashboard', DashboardController::class);
 });
-Route::get('mail', function () {
-    $demande = Demande::first();
-
-    $admin = User::first();
-    return new SendNewDemandeMail($demande, $admin);
+Route::middleware(['auth','surperadmin'])->group(function(){
+    Route::get('super',[SuperAdminController::class,'superFonction'])->name('super.admin');
 });
+
+// Route::get('mail', function () {
+//     $demande = Demande::first();
+
+//     $admin = User::first();
+//     return new SendNewDemandeMail($demande, $admin);
+// });
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

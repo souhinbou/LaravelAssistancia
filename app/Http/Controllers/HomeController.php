@@ -27,13 +27,13 @@ class HomeController extends Controller
     {
         if(Auth()->user()->role=='admin')
         {
-            
+
             $demandes=Demande::where('admin_id',Auth::user()->id)->get();
             return  view('admin.list',compact('demandes'));
 
         }
         else if (Auth()->user()->role=='superadmin'){
-
+            return view('superadmin.super');
         }
         else
             return view('demandes.saisie');

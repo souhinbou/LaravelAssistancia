@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Demande;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')->everyMinute();
         $schedule->call(function(){
-
+         $rappel= Demande::where();
         })->everyMinute();
     }
 

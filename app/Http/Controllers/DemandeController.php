@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\New_;
+use Symfony\Component\ErrorHandler\Debug;
 
 class DemandeController extends Controller
 {
@@ -22,8 +23,9 @@ class DemandeController extends Controller
      */
     public function index()
     {
-
-        return view('demandes.saisie');
+        $demandes= Demande::all();
+        return view('superadmin.super',compact('demandes'));
+        //return view('demandes.saisie');
 
     }
 
@@ -78,6 +80,7 @@ class DemandeController extends Controller
      */
     public function show(demande $demande)
     {
+        //dd('hh');
         return view('admin.show',compact('demande'));
     }
 
@@ -139,16 +142,20 @@ class DemandeController extends Controller
             $demande->update(['status'=>'Traitee', 'reponse'=>$request->reponse]);
             $user_demande=$demande->user;
             Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
-           // return view('admin.list',compact('demande'));
+            return view('admin.list',compact('demande'));
     }
 
     public function attente_encour(Request $request,Demande $demande){
 
         if(empty($demande->admin_id)){
+           //dd('niania');
             Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
-            return view('admin.list',compact('demande'));
+            //return view('admin.list',compact('demande'));
         }
 
+    }
+    public function saisie(){
+        return view('demandes.saisie');
     }
 
 }

@@ -1,53 +1,56 @@
 @extends('layouts.app')
+
+@section('title', 'Liste des Demandes')
 @section('content')
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>Liste des Demandes</p>
+                </blockquote>
+                <div class="table-responsive-sm">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">Objet</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-  <!-- Navbar -->
-  {{-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-
-
-  </nav> --}}
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Sidebar -->
-    <div class="sidebar">
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
+                            @foreach ($demandes as $demande)
+                            <tr class="">
+                                <td scope="row">{{$loop->index+1}}</td>
+                                <td>{{ $demande->objet }}</td>
+                                <td>{{ $demande->description }}</td>
+                                <td>
+                                    @if ($demande->status==='Traitee')
+                                        <span class="badge bg-success">{{$demande->status}}</span>
+                                    @elseif ($demande->status==='En_cours')
+                                        <span class="badge bg-warning">{{$demande->status}}</span>
+                                    @elseif ($demande->status==='Rejetee')
+                                        <span class="badge bg-danger">{{$demande->status}}</span>
+                                    @else
+                                        <span class="badge bg-primary">{{$demande->status}}</span>
+                                    @endif
+                                </td>
+                                {{-- <td>
+                                    <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Traiter la demande</a>
+                                </td> --}}
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1 class="m-0 text-dark">Titre</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        @yield('main')
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-</div>
+@endsection
 
 
 @endsection

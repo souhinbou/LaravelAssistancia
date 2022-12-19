@@ -15,6 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+       // dd('ninia');
         $demandes=Demande::where('admin_id',Auth::user()->id)->get();
         return view('admin.list',compact('demandes'));
     }
@@ -85,9 +86,8 @@ class DashboardController extends Controller
         //
     }
     public function listdemande(){
-
+        // dd("jj");
         $demandes= Demande::where('admin_id',Auth::user()->id)->orWhere('admin_id',null)->get();
-        //$demandes=Demande::all();
         return view('admin.list',compact('demandes'));
     }
 }
