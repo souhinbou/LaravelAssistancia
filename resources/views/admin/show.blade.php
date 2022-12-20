@@ -3,7 +3,7 @@
 @section('title', 'Détails de la demande: '.$demande->objet)
 
 @section('content')
-   @if($demande->admin_id==Auth::user()->id && $demande->id!=null)
+   {{-- @if($demande->admin_id==Auth::user()->id) --}}
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -32,9 +32,9 @@
             </div>
         </div>
 
-    @else
+    {{-- @else
         <div>
             Cette demande ne vous est pas attribuée
         </div>
-    @endif
+    @endif --}}
 @endsection

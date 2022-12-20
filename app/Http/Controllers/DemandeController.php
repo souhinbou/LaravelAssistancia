@@ -23,8 +23,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-
-        return view('demandes.saisie');
+        $demandes= Demande::all();
+        return view('demandes.liste',compact('demandes'));
 
     }
 
@@ -151,13 +151,22 @@ class DemandeController extends Controller
            //dd('niania');
             Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
            // return view('admin.show');
-          //  return view('admin.list',compact('demande'));
+           // return view('admin.list',compact('demande'));
+
+        }
+        else{
+            //return view('admin.list',compact('demande'));
+           // "cette demande";
         }
 
     }
     //Cette fonction permet de saisir une demande
     public function saisie(){
         return view('demandes.saisie');
+    }
+    public function voir_demande(){
+        $demandes= Demande::all();
+        return view('demandes.liste',compact('demandes'));
     }
 
 

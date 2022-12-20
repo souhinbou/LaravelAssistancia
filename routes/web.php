@@ -27,6 +27,7 @@ Route::get('/', function () {
 Route::resource('demande', DemandeController::class);
 Route::get('home2', [DemandeController::class, 'utilisateur']);
 Route::get('saisie',[DemandeController::class,'saisie'])->name('saisie.demande');
+Route::get('affichage',[DemandeController::class,'voir_demande'])->name('affichage.demande');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/private', function () {
