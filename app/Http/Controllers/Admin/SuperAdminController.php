@@ -11,6 +11,6 @@ class SuperAdminController extends Controller
     public function superFonction(){
 
         //$demandes = Demande::all();
-        //return view('superadmin.super',compact('demandes'));
+       // return view('superadmin.super',compact('demandes'));
     }
 }

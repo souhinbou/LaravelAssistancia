@@ -2,7 +2,7 @@
 
 @section('title', 'Liste des Demandes')
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12">
             <div class="card">
               <div class="card-body">
@@ -38,9 +38,9 @@
                                         <span class="badge bg-primary">{{$demande->status}}</span>
                                     @endif
                                 </td>
-                                {{-- <td>
+                                <td>
                                     <a href="{{ route('demande.show',compact('demande')) }}" class="btn btn-primary">Traiter la demande</a>
-                                </td> --}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -49,7 +49,7 @@
               </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 

@@ -2,9 +2,14 @@
 
 namespace App\Console;
 
+use App\Mail\WaitOngoing;
+use App\Mail\Waiting;
 use App\Models\Demande;
+use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,10 +21,26 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')->everyMinute();
+       // $schedule->command('inspire')->everyMinute();
         $schedule->call(function(){
-         $rappel= Demande::where();
+        $admins= User::where('role','admin')->get();
+        $demandes= Demande::where('admin_id',null)->get();
+        foreach($admins as $admin){
+            Mail::to($admin->email)->send(new WaitOngoing($admin->name,$demandes));
+        }
         })->everyMinute();
+
+    }
+    protected function schedule1(Schedule $schedule)
+    {
+        $schedule->call(function (){
+            $admins= User::where('role','admin')->get();
+            $demandes= Demande::where('admin_id',Auth::user()->id);
+            foreach($admins as $admin){
+                Mail::to($admin->email)->send(new Waiting($admin->name,$demandes));
+            }
+
+        });
     }
 
     /**

@@ -23,8 +23,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-        $demandes= Demande::all();
-        return view('superadmin.super',compact('demandes'));
+       // $demandes= Demande::all();
+        //return view('superadmin.super',compact('demandes'));
         //return view('demandes.saisie');
 
     }
@@ -142,7 +142,7 @@ class DemandeController extends Controller
             $demande->update(['status'=>'Traitee', 'reponse'=>$request->reponse]);
             $user_demande=$demande->user;
             Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
-            return view('admin.list',compact('demande'));
+            return view('admin.show',compact('demande'));
     }
 
     public function attente_encour(Request $request,Demande $demande){
@@ -150,7 +150,7 @@ class DemandeController extends Controller
         if(empty($demande->admin_id)){
            //dd('niania');
             Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
-            //return view('admin.list',compact('demande'));
+            return view('admin.list',compact('demande'));
         }
 
     }

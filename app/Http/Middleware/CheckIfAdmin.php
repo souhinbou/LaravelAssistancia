@@ -23,6 +23,7 @@ class CheckIfAdmin
         if (Auth::user()->role == 'admin') {
             return $next($request);
         } else {
+            //return view('auth.login');
             abort(403);
             // return redirect('/utilisateur')->with('message', "accés refusé vous n etes pas un administrateur!");
         }
