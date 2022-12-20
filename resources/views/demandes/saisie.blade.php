@@ -9,7 +9,13 @@
                 <div class="card">
                     <div class="card-body">
                         {{_('Bienvenue Dans Assistancia')}} <br> <br>
-                        <a href="{{route('demande.create')}}">Formulez une demande</a>
+                        <a href="{{route('demande.create')}}">Formulez une demande</a><br>
+
+                    </div>
+                    <div class="card-body">
+
+                        <a href="{{route('affichage.demande')}}">voir mes demandes</a>
+
                     </div>
                 </div>
             </div>

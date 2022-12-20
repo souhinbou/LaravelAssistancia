@@ -120,9 +120,9 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        
+                        <h4>Assistancia</h4>
+                        <p>Une entreprise pour le traitement des demandes</p>
+
                     </div>
                 </div>
             </div>
