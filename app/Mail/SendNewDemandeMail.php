@@ -36,7 +36,7 @@ class SendNewDemandeMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: "Send New Demande Mail-".$this->demande->objet
+            subject: "Envoie d'une nouvelle Demande Mail-".$this->demande->objet
         );
     }
 

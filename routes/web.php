@@ -44,6 +44,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('rejett/{demande}', [DemandeController::class, 'rejet'])->name('rejeet');
     Route::resource('dashboard', DashboardController::class);
 });
+// Route du super administrateur
 Route::middleware(['auth','surperadmin'])->group(function(){
     Route::get('super',[SuperAdminController::class,'superFonction'])->name('super.admin');
 });

@@ -3,7 +3,7 @@
 @section('title', 'Détails de la demande: '.$demande->objet)
 
 @section('content')
-   @if($demande->admin_id==Auth::user()->id)
+   @if($demande->admin_id==Auth::user()->id && $demande->id!=null)
         <div class="container">
             <div class="card">
                 <div class="card-body">

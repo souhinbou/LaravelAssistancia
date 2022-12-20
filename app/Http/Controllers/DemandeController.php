@@ -23,9 +23,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-       // $demandes= Demande::all();
-        //return view('superadmin.super',compact('demandes'));
-        //return view('demandes.saisie');
+
+        return view('demandes.saisie');
 
     }
 
@@ -111,7 +110,7 @@ class DemandeController extends Controller
     public function update(Request $request, demande $demande)
     {
         $request->valide([
-            'nom'=>'required|unique:demande,nom'.$demande->id,
+            'objet'=>'required|unique:demande,objet'.$demande->id,
             'description'=>'required'
         ]);
         $demande->updateOrFail($request->all());
@@ -128,7 +127,7 @@ class DemandeController extends Controller
     {
        //
     }
-
+    // cette fonction permet de jetter une demande
     public function rejeter(Request $request,Demande $demande){
 
         $demande->update(['status'=>'Rejetee', 'reponse'=>$request->reponse]);
@@ -138,24 +137,28 @@ class DemandeController extends Controller
 
 
     }
+    // cette fonction permet de traiter une demande
     public function traiter(Request $request,Demande $demande){
             $demande->update(['status'=>'Traitee', 'reponse'=>$request->reponse]);
             $user_demande=$demande->user;
             Mail::to($user_demande)->send( new MailReaction($demande,$user_demande));
             return view('admin.show',compact('demande'));
     }
-
+     // cette fonction permet de metter une demande en cours
     public function attente_encour(Request $request,Demande $demande){
 
         if(empty($demande->admin_id)){
            //dd('niania');
             Demande::findOrFail($request->id)->updateOrFail(['status'=>'En_cours','admin_id'=>Auth::user()->id]);
-            return view('admin.list',compact('demande'));
+           // return view('admin.show');
+          //  return view('admin.list',compact('demande'));
         }
 
     }
+    //Cette fonction permet de saisir une demande
     public function saisie(){
         return view('demandes.saisie');
     }
+
 
 }

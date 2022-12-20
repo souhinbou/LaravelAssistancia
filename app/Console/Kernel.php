@@ -19,6 +19,9 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    /**
+     * Cette fonction permet de rappeler à tous les administeurs qu'une demande est en attente.
+     */
     protected function schedule(Schedule $schedule)
     {
        // $schedule->command('inspire')->everyMinute();
@@ -31,6 +34,9 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
     }
+    /**
+     * Cette fonction de rapeler un administrateur que la demande est toujours en cours.
+     */
     protected function schedule1(Schedule $schedule)
     {
         $schedule->call(function (){
@@ -40,7 +46,7 @@ class Kernel extends ConsoleKernel
                 Mail::to($admin->email)->send(new Waiting($admin->name,$demandes));
             }
 
-        });
+        })->dailyAt('8:0:0');
     }
 
     /**
